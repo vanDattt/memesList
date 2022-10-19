@@ -36,6 +36,12 @@ function Example() {
         alignItems: "center"
     };
 
+    const gallery = {
+        float: "left",
+        width: "300px",
+        padding: "2px",
+    }
+
     if (error) {
         return <div>Error: {error.message}</div>;
     } 
@@ -47,19 +53,20 @@ function Example() {
             <div>
                 <p style={style}>Click to reload images</p>
                 <ul style={style}>
-                    <button onClick={() => loadImages()}>Add</button>
+                    <button onClick={() => loadImages()}>Reload</button>
                 </ul>
                 <ul>
-                {
-                    images.map((imgSrc, index) => (
-                        <img src={imgSrc.url} key={index} width={imgSrc.width} height={imgSrc.height} alt="..."></img>
-                    ))
-                }
+                    <div style={gallery}>
+                    {
+                        images.map((imgSrc, index) => (
+                            <img src={imgSrc.url} key={index} alt="..."></img>
+                        ))
+                    }
+                    </div>
                 </ul>
             </div>
         );
     }
-    
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
