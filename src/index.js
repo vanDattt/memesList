@@ -8,7 +8,6 @@ function Example() {
     const [isLoaded, setIsLoaded] = useState(false);
 
     function loadImages(){
-        console.log("LOAD IMAGE AGAIN");
         fetch("https://api.imgflip.com/get_memes")
             .then(res => res.json())
             .then(
@@ -31,6 +30,12 @@ function Example() {
         loadImages();
     },[]);
 
+    const style = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    };
+
     if (error) {
         return <div>Error: {error.message}</div>;
     } 
@@ -40,7 +45,10 @@ function Example() {
     else {
         return (
             <div>
-                <button onClick={() => loadImages()}>Add</button>
+                <p style={style}>Click to reload images</p>
+                <ul style={style}>
+                    <button onClick={() => loadImages()}>Add</button>
+                </ul>
                 <ul>
                 {
                     images.map((imgSrc, index) => (
